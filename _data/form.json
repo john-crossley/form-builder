@@ -1,25 +1,33 @@
 {
     "location": "index.php",
     "data": {
-        "label": {
-            "for": "username",
-            "value": "Enter username"
+        "label01": {
+            "label": {
+                "for": "username",
+                "value": "Enter username"
+            }
         },
-        "input": {
-            "type": "text",
-            "name": "username",
-            "class": "random-input-class",
-            "id": "username",
-            "placeholder": "Please enter your username"
+        "input01": {
+            "input": {
+                "type": "text",
+                "name": "username",
+                "class": "random-input-class",
+                "id": "username",
+                "placeholder": "Please enter your username"
+            }
         },
-        "label": {
-            "for": "textarea",
-            "value": "Enter some shit"
+        "label02": {
+            "label": {
+                "for": "textarea",
+                "value": "Enter some information"
+            }
         },
-        "textarea": {
-            "name": "super_awesome_textarea",
-            "id": "textarea",
-            "value": "This is a value for the textarea"
+        "textarea01": {
+            "textarea": {
+                "name": "super_awesome_textarea",
+                "id": "textarea",
+                "value": "This is a value for the textarea"
+            }
         }
     }
 }

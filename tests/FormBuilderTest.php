@@ -34,9 +34,9 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase {
     {
         $this->_formBuilder->parseJson(file_get_contents('_data/form.json'));
         $formBuilder = $this->_formBuilder->getBlueprint();
-        $this->assertObjectHasAttribute('label', $formBuilder->data);
-        $this->assertObjectHasAttribute('input', $formBuilder->data);
-        $this->assertObjectHasAttribute('textarea', $formBuilder->data);
+        $this->assertObjectHasAttribute('label', $formBuilder->data->label01);
+        $this->assertObjectHasAttribute('input', $formBuilder->data->input01);
+        $this->assertObjectHasAttribute('textarea', $formBuilder->data->textarea01);
     }
 
     /**
@@ -77,12 +77,32 @@ class FormBuilderTest extends PHPUnit_Framework_TestCase {
     public function it_should_correctly_build_a_single_element()
     {
         $this->_formBuilder->parseJson(
-            '{"location":"index.php","data":{"label":{"for":"username", "value": "Enter username"}}}'
+            '{"location":"index.php","data":{"label291031":{"label":{"for":"username","value":"Enter username"}}}}'
         );
         $this->_formBuilder->build();
         $this->assertEquals(
             array(
                 "<label for=\"username\">Enter username</label>"
+            ),
+            $this->_formBuilder->getElements()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it_should_correctly_build_all_elements()
+    {
+        $this->_formBuilder->parseJson(
+            file_get_contents('_data/form.json')
+        );
+        $this->_formBuilder->build();
+        $this->assertEquals(
+            array(
+                "<label for=\"username\">Enter username</label>",
+                "<input type=\"text\" name=\"username\" class=\"random-input-class\" id=\"username\" placeholder=\"Please enter your username\">",
+                "<label for=\"textarea\">Enter some information</label>",
+                "<textarea name=\"super_awesome_textarea\" id=\"textarea\">This is a value for the textarea</textarea>"
             ),
             $this->_formBuilder->getElements()
         );

@@ -40,15 +40,15 @@ class FormBuilder {
 
     public function build()
     {
-        // $this->_elements[] = "<label for='username'>Enter username</label>";
-
-        foreach ($this->_blueprint->data as $elementName => $elementData) {
-            if (! array_key_exists($elementName, $this->_tags)) {
-                throw new UnexpectedValueException(
-                    __CLASS__ . ' does not know how to construct [' . $elementName . ']. See ' . __CLASS__ . '::addTag'
-                );
+        foreach ($this->_blueprint->data as $elementObjectData) {
+            foreach ($elementObjectData as $elementName => $elementData) {
+                if (! array_key_exists($elementName, $this->_tags)) {
+                    throw new UnexpectedValueException(
+                        __CLASS__ . ' does not know how to construct [' . $elementName . ']. See ' . __CLASS__ . '::addTag'
+                    );
+                }
+                $this->_elements[] = $this->constructElement($elementName, (array)$elementData);
             }
-            $this->_elements[] = $this->constructElement($elementName, (array)$elementData);
         }
 
     }
@@ -62,7 +62,7 @@ class FormBuilder {
             unset($data['value']);
         }
 
-        return preg_replace_callback('/{{data}}/', function () use ($data) {
+        return preg_replace_callback('/{{data}}/', function ($matches) use ($data) {
             return $this->buildInnards($data);
         }, $tag);
     }
