@@ -1,0 +1,25 @@
+{
+    "location": "index.php",
+    "data": {
+        "label": {
+            "for": "username",
+            "value": "Enter username"
+        },
+        "input": {
+            "type": "text",
+            "name": "username",
+            "class": "random-input-class",
+            "id": "username",
+            "placeholder": "Please enter your username"
+        },
+        "label": {
+            "for": "textarea",
+            "value": "Enter some shit"
+        },
+        "textarea": {
+            "name": "super_awesome_textarea",
+            "id": "textarea",
+            "value": "This is a value for the textarea"
+        }
+    }
+}
